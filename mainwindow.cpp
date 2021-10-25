@@ -24,7 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
                                 QPixmap pix7("C:/Users/rami/Downloads/produit.png");
                                 ui->pic->setPixmap(pix);
                                 QPixmap pix8("C:/Users/rami/Downloads/ressources humaine.png");
-                                    ui->ressources_3 ->setPixmap(pix8);
+                                    ui->ressources_
+                                            ->setPixmap(pix8);
 }
 
 MainWindow::~MainWindow()
@@ -66,4 +67,24 @@ void MainWindow::on_pushButton_9_clicked()
 void MainWindow::on_pushButton_7_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(5);
+}
+
+void MainWindow::on_pushButton_64_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+ ui->stackedWidget->setCurrentIndex(6);
+}
+
+void MainWindow::on_pushButton_103_clicked()
+{
+   ui->stackedWidget->setCurrentIndex(0);
 }
