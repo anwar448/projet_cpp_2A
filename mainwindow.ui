@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>767</width>
-    <height>687</height>
+    <width>968</width>
+    <height>628</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>751</width>
-      <height>511</height>
+      <width>951</width>
+      <height>561</height>
      </rect>
     </property>
     <property name="palette">
@@ -466,7 +466,7 @@
      </palette>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -475,8 +475,8 @@
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>30</y>
+        <x>240</x>
+        <y>50</y>
         <width>461</width>
         <height>421</height>
        </rect>
@@ -943,15 +943,15 @@
        </property>
        <property name="font">
         <font>
-         <weight>50</weight>
-         <bold>false</bold>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
         <string>Chercher</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="trier">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -962,8 +962,8 @@
        </property>
        <property name="font">
         <font>
-         <weight>50</weight>
-         <bold>false</bold>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
@@ -981,8 +981,8 @@
        </property>
        <property name="font">
         <font>
-         <weight>50</weight>
-         <bold>false</bold>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
@@ -994,14 +994,14 @@
         <rect>
          <x>290</x>
          <y>330</y>
-         <width>93</width>
+         <width>111</width>
          <height>28</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <weight>50</weight>
-         <bold>false</bold>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
@@ -1013,14 +1013,14 @@
         <rect>
          <x>290</x>
          <y>280</y>
-         <width>93</width>
+         <width>111</width>
          <height>28</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <weight>50</weight>
-         <bold>false</bold>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
@@ -1032,14 +1032,14 @@
         <rect>
          <x>290</x>
          <y>230</y>
-         <width>93</width>
+         <width>111</width>
          <height>28</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <weight>50</weight>
-         <bold>false</bold>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
@@ -1078,7 +1078,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>270</x>
         <y>70</y>
         <width>421</width>
         <height>351</height>
@@ -1260,7 +1260,7 @@ p, li { white-space: pre-wrap; }
         <string>Ajouter</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_13">
+      <widget class="QPushButton" name="Annuler_1">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -1305,18 +1305,18 @@ p, li { white-space: pre-wrap; }
      <widget class="QTableView" name="tab_afficher">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>691</width>
-        <height>391</height>
+        <x>17</x>
+        <y>40</y>
+        <width>911</width>
+        <height>471</height>
        </rect>
       </property>
      </widget>
      <widget class="QPushButton" name="afficher">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>430</y>
+        <x>20</x>
+        <y>10</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -1333,7 +1333,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QGroupBox" name="groupBox_6">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>280</x>
         <y>50</y>
         <width>411</width>
         <height>371</height>
@@ -1535,7 +1535,7 @@ p, li { white-space: pre-wrap; }
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_20">
+      <widget class="QPushButton" name="afficher_pour_modifier">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -1558,7 +1558,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="modifier">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>470</x>
         <y>370</y>
         <width>93</width>
         <height>28</height>
@@ -1574,10 +1574,10 @@ p, li { white-space: pre-wrap; }
        <string>Modifier</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_16">
+     <widget class="QPushButton" name="Annuler_2">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>570</x>
         <y>370</y>
         <width>93</width>
         <height>28</height>
@@ -1601,8 +1601,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QGroupBox" name="groupBox_7">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>120</y>
+        <x>260</x>
+        <y>170</y>
         <width>411</width>
         <height>151</height>
        </rect>
@@ -1645,7 +1645,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_17">
+      <widget class="QPushButton" name="Annuler_3">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -1692,7 +1692,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>767</width>
+     <width>968</width>
      <height>26</height>
     </rect>
    </property>

@@ -26,6 +26,16 @@ private slots:
 
     void on_modifier_clicked();
 
+    void on_Annuler_1_clicked();
+
+    void on_Annuler_2_clicked();
+
+    void on_Annuler_3_clicked();
+
+    void on_trier_clicked();
+
+    void on_afficher_pour_modifier_clicked();
+
 private:
     Ui::MainWindow *ui;
     Produit P;

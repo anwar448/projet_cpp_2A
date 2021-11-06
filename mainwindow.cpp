@@ -15,7 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QPixmap pix("C:/Users/21651/Documents/2A22/projet C++/photo_produit2.png");
     ui->image->setPixmap(pix);
 
-    ui->le_ID->setValidator(new QIntValidator(100, 99999, this));
+    ui->le_ID->setValidator(new QIntValidator(100, 99999999, this));
+    ui->le_Nombre->setValidator(new QIntValidator(100, 99999999, this));
+
     //ui->tab_afficher->setModel(P.afficher());
 }
 
@@ -30,11 +32,11 @@ void MainWindow::on_ajouter_clicked()
     int ID=ui->le_ID->text().toInt();
     QString Nom=ui->le_Nom->text();
     QString Type=ui->le_Type->text();
-    int Nombre=ui->le_Nombre->text().toInt();
+    int Quantite=ui->le_Nombre->text().toInt();
     QString Delai=ui->le_Delai->text();
     QString Prix=ui->le_Prix->text();
 
-    Produit P(ID,Nom,Type,Nombre,Delai,Prix);
+    Produit P(ID,Nom,Type,Quantite,Delai,Prix);
     bool test=P.ajouter();
     QMessageBox msgBox;
 
@@ -77,11 +79,11 @@ void MainWindow::on_modifier_clicked()
     int ID=ui->le_ID_mod->text().toInt();
     QString Nom=ui->le_Nom_mod->text();
     QString Type=ui->le_Type_mod->text();
-    int Nombre=ui->le_Nombre_mod->text().toInt();
+    int Quantite=ui->le_Nombre_mod->text().toInt();
     QString Delai=ui->le_Delai_mod->text();
     QString Prix=ui->le_Prix_mod->text();
 
-    Produit P(ID,Nom,Type,Nombre,Delai,Prix);
+    Produit P(ID,Nom,Type,Quantite,Delai,Prix);
 
 
     P.setID(ui->le_ID_mod->text().toInt()) ;
@@ -97,4 +99,44 @@ void MainWindow::on_modifier_clicked()
         msgBox.setText("Echec de modification");
         msgBox.exec();
 
+}
+
+
+
+void MainWindow::on_Annuler_1_clicked()
+{
+    ui->le_ID->setText("");
+    ui->le_Nom->setText("");
+    ui->le_Type->setText("");
+    ui->le_Nombre->setText("");
+    ui->le_Delai->setText("");
+    ui->le_Prix->setText("");
+}
+
+
+void MainWindow::on_Annuler_2_clicked()
+{
+    ui->le_ID_mod->setText("");
+    ui->le_Nom_mod->setText("");
+    ui->le_Type_mod->setText("");
+    ui->le_Nombre_mod->setText("");
+    ui->le_Delai_mod->setText("");
+    ui->le_Prix_mod->setText("");
+}
+
+void MainWindow::on_Annuler_3_clicked()
+{
+    ui->le_ID_supp->setText("");
+}
+
+void MainWindow::on_trier_clicked()
+{
+    Produit P;
+    ui->tab_afficher->setModel(P.trierDelai());
+}
+
+void MainWindow::on_afficher_pour_modifier_clicked()
+{
+    // ui->le_Nom_mod->setText("");
+     //chouf supprimer
 }

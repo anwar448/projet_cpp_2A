@@ -12,14 +12,14 @@ public:
         int getID();
         QString getNom();
         QString getType();
-        int getNombre();
+        int getQuantite();
         QString getDelai();
         QString getPrix();
 
             void setID(int n);
             void setNom(QString n);
             void setType(QString n);
-            void setNombre(int n);
+            void setQuantite(int n);
             void setDelai(QString n);
             void setPrix(QString n);
 
@@ -27,10 +27,12 @@ public:
                 QSqlQueryModel* afficher();
                 bool supprimer(int);
                 bool modifier(int);
+                bool recherche(int id);
+                QSqlQueryModel * trierDelai();
 
 private:
     QString Nom, Type, Delai;
-    int ID,Nombre;
+    int ID,Quantite;
     QString Prix;
 };
 
