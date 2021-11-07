@@ -30,6 +30,7 @@ public:
                 bool recherche(int id);
                 QSqlQueryModel * trierDelai();
 
+
 private:
     QString Nom, Type, Delai;
     int ID,Quantite;

@@ -70,7 +70,6 @@ Produit::Produit(int id,QString nom,QString type,int quantite,QString delai,QStr
                  messageBox.setFixedSize(500,200);
                  return false;
              }
-
             return query.exec();
     }
 
@@ -152,4 +151,5 @@ Produit::Produit(int id,QString nom,QString type,int quantite,QString delai,QStr
         model->setHeaderData(4, Qt::Horizontal, QObject::tr("Delai"));
         model->setHeaderData(5, Qt::Horizontal, QObject::tr("Prix"));
         return model;
+
     }

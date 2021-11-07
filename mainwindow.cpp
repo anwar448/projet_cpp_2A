@@ -16,7 +16,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->image->setPixmap(pix);
 
     ui->le_ID->setValidator(new QIntValidator(100, 99999999, this));
+    ui->le_ID_mod->setValidator(new QIntValidator(100, 99999999, this));
+    ui->le_ID_supp->setValidator(new QIntValidator(100, 99999999, this));
     ui->le_Nombre->setValidator(new QIntValidator(100, 99999999, this));
+    ui->le_ID_mod->setValidator(new QIntValidator(100, 99999999, this));
+    ui->le_Nombre_mod->setValidator(new QIntValidator(100, 99999999, this));
+
+
+
+    //ui->le_Prix->setValidator(new QIntValidator(100, 9.9999999, this));
+
 
     //ui->tab_afficher->setModel(P.afficher());
 }
@@ -29,6 +38,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_ajouter_clicked()
 {
+
+
     int ID=ui->le_ID->text().toInt();
     QString Nom=ui->le_Nom->text();
     QString Type=ui->le_Type->text();
@@ -36,8 +47,26 @@ void MainWindow::on_ajouter_clicked()
     QString Delai=ui->le_Delai->text();
     QString Prix=ui->le_Prix->text();
 
+    //QWidget::connect(ui->le_Nom,SIGNAL(textChanged(QString)),this,SLOT(test(QString)));
+
+    for(int i = 0; i < Nom.length(); i++)
+    {
+        if((Nom.at(i)=="/")||(Nom.at(i)=="$")||(Nom.at(i)==";")||
+        (Nom.at(i)==":")||(Nom.at(i)==",")||(Nom.at(i)==".")||(Nom.at(i)=="§")||(Nom.at(i)=="!")||(Nom.at(i)=="¨")||(Nom.at(i)=="£")||(Nom.at(i)=="µ")||(Nom.at(i)=="%")||
+        (Nom.at(i)=="²")||(Nom.at(i)==">")||(Nom.at(i)=="<")||(Nom.at(i)=="&")||(Nom.at(i)=="~")||(Nom.at(i)=="é")||(Nom.at(i)=="#")||(Nom.at(i)=="[")||(Nom.at(i)=="]")||
+        (Nom.at(i)=="(")||(Nom.at(i)==")")||(Nom.at(i)=="}")||(Nom.at(i)=="{")||(Nom.at(i)=="'")||(Nom.at(i)=="|")||(Nom.at(i)=="-")||(Nom.at(i)=="``")||(Nom.at(i)=="è")||
+        (Nom.at(i)=="_")||(Nom.at(i)=="@")||(Nom.at(i)=="ç")||(Nom.at(i)=="^")||(Nom.at(i)=="à")||(Nom.at(i)=="9")||(Nom.at(i)=="8")||(Nom.at(i)=="7")||(Nom.at(i)=="6")||
+        (Nom.at(i)=="5")||(Nom.at(i)=="4")||(Nom.at(i)=="3")||(Nom.at(i)=="2")||(Nom.at(i)=="1")||(Nom.at(i)=="0")||(Nom.at(i)=="+")||(Nom.at(i)=="-")||(Nom.at(i)=="*"))
+           // ui->le_Nom->backspace();
+            Nom.replace( Nom.at(i),"");
+
+    }
+
+
+
     Produit P(ID,Nom,Type,Quantite,Delai,Prix);
     bool test=P.ajouter();
+
     QMessageBox msgBox;
 
     if(test)
