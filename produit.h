@@ -2,6 +2,7 @@
 #define PRODUIT_H
 #include <QString>
 #include <QSqlQueryModel>
+#include <QTableView>
 
 class Produit
 {
@@ -27,8 +28,12 @@ public:
                 QSqlQueryModel* afficher();
                 bool supprimer(int);
                 bool modifier(int);
+                void searchRegexp(QTableView *table, int x);
                 bool recherche(int id);
                 QSqlQueryModel * trierDelai();
+
+private slots:
+void on_recherche_textChanged(const QString &arg1);
 
 
 private:

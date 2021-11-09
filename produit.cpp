@@ -131,6 +131,24 @@ Produit::Produit(int id,QString nom,QString type,int quantite,QString delai,QStr
     return query.exec();
     }
 
+    void Produit::searchRegexp(QTableView *table, int x)
+    {
+       QSqlQueryModel *model=new QSqlQueryModel();
+       QSqlQuery *query =new QSqlQuery;
+       query->prepare("select * from Produit where regexp_like(ID_produit,:ID);");
+       query->bindValue(":ID",x);
+
+       if(x==0)
+       {
+           qDebug("tawa 0");
+           query->prepare("select * from Produit;");
+       }
+       query->exec();
+       model->setQuery(*query);
+       table->setModel(model);
+       table->show();
+    }
+
     bool Produit:: recherche(int id)
     {
         QSqlQuery query;

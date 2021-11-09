@@ -4,6 +4,12 @@
 #include <QMessageBox>
 #include <QIntValidator>
 #include <connection.h>
+#include <iostream>
+#include <QRegExp>
+#include <QRegExpValidator>
+#define NOM_RX "^([a-z]+[ ]?|[A-Z]+['-]?)+$"
+#define TYPE_RX "^([a-z]+[ ]?|[A-Z]+['-]?)+$"
+#define PRIX_RX "^([0-9]?|[.]?)+$"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -14,14 +20,32 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QPixmap pix("C:/Users/21651/Documents/2A22/projet C++/photo_produit2.png");
     ui->image->setPixmap(pix);
+    QPixmap pix2("C:/Users/21651/Documents/2A22/projet C++/photo_produit2.png");
+    ui->image_2->setPixmap(pix2);
+    QPixmap pix3("C:/Users/21651/Documents/2A22/projet C++/photo_produit2.png");
+    ui->image_3->setPixmap(pix3);
+    QPixmap pix4("C:/Users/21651/Documents/2A22/projet C++/photo_produit2.png");
+    ui->image_4->setPixmap(pix4);
 
     ui->le_ID->setValidator(new QIntValidator(100, 99999999, this));
     ui->le_ID_mod->setValidator(new QIntValidator(100, 99999999, this));
     ui->le_ID_supp->setValidator(new QIntValidator(100, 99999999, this));
     ui->le_Nombre->setValidator(new QIntValidator(100, 99999999, this));
-    ui->le_ID_mod->setValidator(new QIntValidator(100, 99999999, this));
     ui->le_Nombre_mod->setValidator(new QIntValidator(100, 99999999, this));
 
+
+    QRegExp rxNom(NOM_RX);
+    QRegExp rxType(TYPE_RX);
+    QRegExp rxPrix(PRIX_RX);
+    QRegExpValidator*valiNom= new QRegExpValidator(rxNom,this);
+    QRegExpValidator*valiType= new QRegExpValidator(rxType,this);
+    QRegExpValidator*valiPrix= new QRegExpValidator(rxPrix,this);
+    ui->le_Nom->setValidator(valiNom);
+    ui->le_Type->setValidator(valiType);
+    ui->le_Nom_mod->setValidator(valiNom);
+    ui->le_Type_mod->setValidator(valiType);
+    ui->le_Prix->setValidator(valiPrix);
+    ui->le_Prix_mod->setValidator(valiPrix);
 
 
     //ui->le_Prix->setValidator(new QIntValidator(100, 9.9999999, this));
@@ -46,23 +70,6 @@ void MainWindow::on_ajouter_clicked()
     int Quantite=ui->le_Nombre->text().toInt();
     QString Delai=ui->le_Delai->text();
     QString Prix=ui->le_Prix->text();
-
-    //QWidget::connect(ui->le_Nom,SIGNAL(textChanged(QString)),this,SLOT(test(QString)));
-
-    for(int i = 0; i < Nom.length(); i++)
-    {
-        if((Nom.at(i)=="/")||(Nom.at(i)=="$")||(Nom.at(i)==";")||
-        (Nom.at(i)==":")||(Nom.at(i)==",")||(Nom.at(i)==".")||(Nom.at(i)=="§")||(Nom.at(i)=="!")||(Nom.at(i)=="¨")||(Nom.at(i)=="£")||(Nom.at(i)=="µ")||(Nom.at(i)=="%")||
-        (Nom.at(i)=="²")||(Nom.at(i)==">")||(Nom.at(i)=="<")||(Nom.at(i)=="&")||(Nom.at(i)=="~")||(Nom.at(i)=="é")||(Nom.at(i)=="#")||(Nom.at(i)=="[")||(Nom.at(i)=="]")||
-        (Nom.at(i)=="(")||(Nom.at(i)==")")||(Nom.at(i)=="}")||(Nom.at(i)=="{")||(Nom.at(i)=="'")||(Nom.at(i)=="|")||(Nom.at(i)=="-")||(Nom.at(i)=="``")||(Nom.at(i)=="è")||
-        (Nom.at(i)=="_")||(Nom.at(i)=="@")||(Nom.at(i)=="ç")||(Nom.at(i)=="^")||(Nom.at(i)=="à")||(Nom.at(i)=="9")||(Nom.at(i)=="8")||(Nom.at(i)=="7")||(Nom.at(i)=="6")||
-        (Nom.at(i)=="5")||(Nom.at(i)=="4")||(Nom.at(i)=="3")||(Nom.at(i)=="2")||(Nom.at(i)=="1")||(Nom.at(i)=="0")||(Nom.at(i)=="+")||(Nom.at(i)=="-")||(Nom.at(i)=="*"))
-           // ui->le_Nom->backspace();
-            Nom.replace( Nom.at(i),"");
-
-    }
-
-
 
     Produit P(ID,Nom,Type,Quantite,Delai,Prix);
     bool test=P.ajouter();
