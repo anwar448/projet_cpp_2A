@@ -40,7 +40,24 @@ private slots:
 
     void on_pushButton_103_clicked();
 
+    void on_pushButton_114_clicked();
+
+    void on_pushButton_61_clicked();
+
+    void on_pushButton_69_clicked();
+
+    void on_pushButton_65_clicked();
+
+    void on_tabWidget_3_tabBarClicked(int index);
+
+    void on_tabWidget_3_currentChanged(int index);
+
+    void on_pushButton_82_clicked();
+
+    void on_pushButton_66_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QString val;
 };
 #endif // MAINWINDOW_H
