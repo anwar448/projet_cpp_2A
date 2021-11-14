@@ -89,33 +89,31 @@ service::service(int id, float tarifs, QString type, QString offre, QString disp
 
 bool service::ajouter()
 {
-  QSqlQuery query;
+  QSqlQuery queryAjouter;
   QString   request = "insert into SERVICES values(:id, :offre, :type, :tarifs, :disponibilite, :horaire, :ID_employer);";
-  query.prepare(request);
-  query.bindValue(":id", this->id);
-  query.bindValue(":tarifs", this->getTarifs());
-  query.bindValue(":type", this->type);
-  query.bindValue(":offre", this->offre);
-  query.bindValue(":disponibilite", this->disponibilite);
-  query.bindValue(":horaire", this->horaire);
-  query.bindValue(":ID_employer", this->ID_employer);
-  if(query.exec())return true;
+  queryAjouter.prepare(request);
+  queryAjouter.bindValue(":id", this->id);
+  queryAjouter.bindValue(":tarifs", this->getTarifs());
+  queryAjouter.bindValue(":type", this->type);
+  queryAjouter.bindValue(":offre", this->offre);
+  queryAjouter.bindValue(":disponibilite", this->disponibilite);
+  queryAjouter.bindValue(":horaire", this->horaire);
+  queryAjouter.bindValue(":ID_employer", this->ID_employer);
+  if(queryAjouter.exec())return true;
   else{
 
-      qDebug()<<"erreur du a:" << query.lastError().text() << this->getTarifs();
+      qDebug()<<"erreur du a:" << queryAjouter.lastError().text() << this->getTarifs();
       return false;
   }
 
 
 }
 
-bool service::supprimer()
+bool service::supprimer(int id)
 {
     QSqlQuery query;
-    QString request = "delete from SERVICE  where id = :id;";
-
-    query.prepare(request);
-    query.bindValue(" :id", this->getId());
+    query.prepare("delete from SERVICES  where id = :id;");
+    query.bindValue(0, id);
 
     if(query.exec())return true;
     else{
@@ -128,24 +126,26 @@ bool service::supprimer()
 service service::select(int id)
 {
     service s;
-    QSqlQuery query;
+    QSqlQuery q;
     s.setId(-1);
     QString request="select * from services where id = ";
     request = request+ QString::number(id) +" ;";
     qDebug()<<request;
-    if(query.exec(request)){
-            qDebug() <<"je passe ici:"<<query.value(0).toInt();
 
-        s.setId(query.value(0).toInt());
-        s.setType(query.value(1).toString());
-        s.setOffres(query.value(2).toString());
-        s.setTarifs(query.value(3).toInt());
-        s.setHoraire(query.value(4).toDate());
-        s.setDisponibilite(query.value(5).toString());
-        s.setID_employer(query.value(5).toInt());
-        qDebug()<<"la valeur final de s est:"<<s.getId();
+    if(q.exec(request)){
+        q.next();
+            qDebug() <<"je passe ici:"<<q.value(0).toInt();
+
+        s.setId(q.value(0).toInt());
+        s.setOffres(q.value(1).toString());
+        s.setType(q.value(2).toString());
+        s.setTarifs(q.value(3).toInt());
+        s.setDisponibilite(q.value(4).toString());
+        s.setHoraire(q.value(5).toDate());
+         s.setID_employer(q.value(6).toInt());
+        qDebug()<<"la valeur final de s est:"<<s.getID_employer();
     }else{
-        qDebug()<<"erreur de suppression:" << query.lastError().text();
+        qDebug()<<"erreur de suppression:" << q.lastError().text();
 
     }
     return s;

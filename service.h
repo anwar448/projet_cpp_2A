@@ -44,9 +44,10 @@ public:
      QString  collecter ();
      bool ajouter();
      bool modifier(service a);
-     bool supprimer();
+     bool supprimer(int);
      bool afficher();
      service select(int id);
+
 
 };
 

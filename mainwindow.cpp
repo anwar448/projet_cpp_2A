@@ -80,13 +80,13 @@ service MainWindow::collecte_data()
 void MainWindow::on_pbAJOUTER_clicked()
 {
  service serv;
- bool retour;
  serv= collecte_data();
- retour= controle_saisie();
-if (retour){
-
-    serv.ajouter();
-}else{ qDebug() << "erreur_controleDeSaisie";}
+ bool test= controle_saisie();
+ QMessageBox msgBox;
+  if(test)
+      msgBox.setText("Ajout avec succes.");
+  else msgBox.setText("Echec de l'ajout");
+  msgBox.exec();
 }
 
 void MainWindow::on_groupBox_3_clicked()
@@ -104,6 +104,24 @@ void MainWindow::on_pushButton_2_clicked()
    this->ui->spinBox_6->setValue(s.getTarifs());
    this->ui->lineEdit_12->setText(s.getOffre());
    this->ui->lineEdit_13->setText(s.getDisponibilite());
-   this->ui->timeEdit_2->setDate(s.getHoraire());
-   this->ui->Id_employer->setValue(s.getID_employer());
+   this->ui->DATE->setDate(s.getHoraire());
+   this->ui->spinBox_7->setValue(s.getID_employer());
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+
+}
+
+void MainWindow::on_pb_supprimer_clicked()
+{
+   service S1; S1.setId(ui->id_supp->text().toInt());
+   bool test=S1.supprimer(S1.getId());
+   QMessageBox msgBox;
+    if(test)
+        msgBox.setText("Suppression avec succes.");
+    else msgBox.setText("Echec de suppression");
+    msgBox.exec();
+
+
 }

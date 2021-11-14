@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include "service.h"
+#include "QMessageBox"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,6 +23,10 @@ private slots:
     void on_groupBox_3_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_pb_supprimer_clicked();
 
 private:
     Ui::MainWindow *ui;
