@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "RESSOURCE_HUMAINE.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -56,8 +57,23 @@ private slots:
 
     void on_pushButton_66_clicked();
 
+    void on_lineEdit_100_textChanged(const QString &arg1);
+
+    void on_comboBox_2_currentIndexChanged(int index);
+
+    void on_comboBox_3_currentIndexChanged(const QString &arg1);
+
+    void on_comboBox_3_currentIndexChanged(int index);
+
+    void on_pushButton_51_clicked();
+
+    void on_pushButton_125_clicked();
+
+    void on_pushButton_52_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString val;
+    RESSOURCE_HUMAINE C;
 };
 #endif // MAINWINDOW_H

@@ -5,6 +5,10 @@
 #include<QSqlQuery>
 #include<QSqlQueryModel>
 #include<QRegExpValidator>
+#include<QFileInfo>
+#include<QFileDialog>
+#include<QtPrintSupport/QPrinter>
+#include<QtPrintSupport/QPrintDialog>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -45,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
                                     QPixmap pix9("C:/Users/rami/Downloads/logo.png");
                                     ui->logo->setPixmap(pix9);
 
-
+ui->verticalLayout->addWidget(C.stat());
 }
 
 MainWindow::~MainWindow()
@@ -123,7 +127,7 @@ void MainWindow::on_pushButton_61_clicked()
     QString AFFECTATION_SERVICE=ui->lineEdit_Nom_6->text();
     int NOMBRE_HEURE_DE_TRAVAIL=ui->lineEdit_Type_6->text().toInt();
     RESSOURCE_HUMAINE C(cin, nom, prenom,AFFECTATION_SERVICE,NOMBRE_HEURE_DE_TRAVAIL);
-if (cin.size()>7)
+if ((cin.size()>7)&(nom.size()>2)&(prenom.size()>2)&(AFFECTATION_SERVICE.size()>2)&(NOMBRE_HEURE_DE_TRAVAIL>0))
 {
     bool test=C.ajouter();
     if(test)
@@ -249,6 +253,8 @@ void MainWindow::on_pushButton_66_clicked()
     }
     else
     {
+        if ((cin.size()>7)&(nom.size()>2)&(prenom.size()>2)&(AFFECTATION_SERVICE.size()>2)&(NOMBRE_HEURE_DE_TRAVAIL>0))
+        {
         bool v=C.modifier(cin);
         QMessageBox::information(nullptr, QObject::tr("SUCCESS"),
         QObject::tr("UPDATED.\n""Click Cancel to exit."), QMessageBox::Cancel);
@@ -258,6 +264,125 @@ void MainWindow::on_pushButton_66_clicked()
         QMessageBox::information(nullptr, QObject::tr("SUCCESS"),
         QObject::tr("failed.\n""Click Cancel to exit."), QMessageBox::Cancel);}
     }
-
+    }
     ui->tableView->setModel(C.afficher());
+}
+
+void MainWindow::on_lineEdit_100_textChanged(const QString &arg1)
+{
+    ui->tableView->setModel(C.rechercher(arg1));
+}
+
+void MainWindow::on_comboBox_2_currentIndexChanged(int index)
+{
+    switch (index)
+        {
+          case 0:  ui->tableView->setModel(C.trie1());break;
+          case 1:  ui->tableView->setModel(C.trie2());break;
+          case 2:  ui->tableView->setModel(C.trie3());break;
+          case 3:  ui->tableView->setModel(C.trie4());break;
+          case 4:  ui->tableView->setModel(C.trie5());break;
+        }
+}
+
+void MainWindow::on_tabWidget_3_tabBarClicked(int index)
+{
+    if (index==6)
+        ui->verticalLayout->update();
+}
+
+void MainWindow::on_comboBox_3_currentIndexChanged(int index)
+{
+    switch (index)
+        {
+          case 0:  ui->tableView->setModel(C.trie11());break;
+          case 1:  ui->tableView->setModel(C.trie22());break;
+          case 2:  ui->tableView->setModel(C.trie33());break;
+          case 3:  ui->tableView->setModel(C.trie44());break;
+          case 4:  ui->tableView->setModel(C.trie55());break;
+        }
+}
+
+
+
+void MainWindow::on_pushButton_125_clicked()
+{
+}
+
+void MainWindow::on_pushButton_51_clicked()
+{
+
+
+            QString filename= QFileDialog::getOpenFileName(this,tr("choose"),"",tr("Images (*.png *.jpg *.jpeg"));
+            if (QString::compare(filename,QString())!=0)
+            {
+              QImage label_image;
+              bool valid =label_image.load(filename);
+              if (valid)
+              {   label_image= label_image.scaledToWidth(ui->image->width(),Qt::SmoothTransformation);
+                  ui->image->setPixmap(QPixmap::fromImage(label_image));
+              }
+              else {// error
+              }
+            }
+}
+
+void MainWindow::on_pushButton_52_clicked()
+{
+    QString strStream;
+               QTextStream out(&strStream);
+
+               const int rowCount = ui->tableView->model()->rowCount();
+               const int columnCount = ui->tableView->model()->columnCount();
+
+               out <<  "<html>\n"
+                   "<head>\n"
+                   "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                   <<  QString("<title>%1</title>\n").arg("strTitle")
+                   <<  "</head>\n"
+                   "<body bgcolor=#ffffff link=#5000A0>\n"
+
+                   //     "<align='right'> " << datefich << "</align>"
+                   "<center> <H1>Liste RH </H1></br></br><table border=1 cellspacing=0 cellpadding=2>\n";
+
+               // headers
+               out << "<thead><tr bgcolor=#f0f0f0> <th>Numero</th>";
+               for (int column = 0; column < columnCount; column++)
+                   if (!ui->tableView->isColumnHidden(column))
+                       out << QString("<th>%1</th>").arg(ui->tableView->model()->headerData(column, Qt::Horizontal).toString());
+               out << "</tr></thead>\n";
+
+               // data table
+               for (int row = 0; row < rowCount; row++)
+               {
+                   out << "<tr> <td bkcolor=0>" << row + 1 << "</td>";
+                   for (int column = 0; column < columnCount; column++)
+                   {
+                       if (!ui->tableView->isColumnHidden(column))
+                       {
+                           QString data = ui->tableView->model()->data(ui->tableView->model()->index(row, column)).toString().simplified();
+                           out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                       }
+                   }
+                   out << "</tr>\n";
+               }
+               out <<  "</table> </center>\n"
+                   "</body>\n"
+                   "</html>\n";
+
+               QString fileName = QFileDialog::getSaveFileName((QWidget * )0, "Sauvegarder en PDF", QString(), "*.pdf");
+               if (QFileInfo(fileName).suffix().isEmpty())
+               {
+                   fileName.append(".pdf");
+               }
+
+               QPrinter printer (QPrinter::PrinterResolution);
+                printer.setOutputFormat(QPrinter::PdfFormat);
+                printer.setPaperSize(QPrinter::A4);
+                printer.setOutputFileName(fileName);
+
+                QTextDocument doc;
+                doc.setHtml(strStream);
+                doc.setPageSize(printer.pageRect().size()); // This is necessary if you want to hide the page number
+                doc.print(&printer);
 }
