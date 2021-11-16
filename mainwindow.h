@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include "produit.h"
+#include <QListView>
+#include <QTableView>
+#include <QTreeView>
+#include <QItemDelegate>
 
 namespace Ui {
 class MainWindow;
@@ -21,7 +25,6 @@ private slots:
 
     void on_supprimer_clicked();
 
-
     void on_afficher_clicked();
 
     void on_modifier_clicked();
@@ -35,6 +38,14 @@ private slots:
     void on_trier_clicked();
 
     void on_afficher_pour_modifier_clicked();
+
+    void on_Rechercher_clicked();
+
+    void on_Quitter_clicked();
+
+    void on_alerte_clicked();
+
+    void on_mailing_clicked();
 
 private:
     Ui::MainWindow *ui;

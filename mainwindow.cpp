@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "stat_produit.h"
 #include "produit.h"
+#include <QSqlQuery>
 #include <QMessageBox>
 #include <QIntValidator>
 #include <connection.h>
@@ -10,7 +12,12 @@
 #define NOM_RX "^([a-z]+[ ]?|[A-Z]+['-]?)+$"
 #define TYPE_RX "^([a-z]+[ ]?|[A-Z]+['-]?)+$"
 #define PRIX_RX "^([0-9]?|[.]?)+$"
-
+#include <QPainter>
+//#include <QMediaPlayer>
+#include <QSound>
+#include <QDesktopServices>
+#include <QUrl>
+#include "piechartwidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -48,8 +55,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->le_Prix_mod->setValidator(valiPrix);
 
 
-    //ui->le_Prix->setValidator(new QIntValidator(100, 9.9999999, this));
-
 
     //ui->tab_afficher->setModel(P.afficher());
 }
@@ -86,19 +91,46 @@ void MainWindow::on_ajouter_clicked()
 
 void MainWindow::on_supprimer_clicked()
 {
-
     Produit P1, P2;
-    P2.setID(ui->le_ID_supp->text().toInt()) ;
-    bool test=P1.supprimer(P2.getID()) ;
-    QMessageBox msgBox;
+    int val=ui->le_ID_supp->text().toInt();
+    QSqlQuery qry;
+      qry.prepare("SELECT * FROM Produit where ID_PRODUIT= :newid");
+      qry.bindValue(":newid",val);
 
-    if(test)
-    {msgBox.setText("suppression avec succes.");
-        ui->tab_afficher->setModel(P.afficher());
-    }
-    else
-        msgBox.setText("Echec de suppression");
-        msgBox.exec();
+      if(!qry.exec())
+      {
+          QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                  QObject::tr("Echec de suppression.\n"
+                  "Click Cancel to exit."), QMessageBox::Cancel);
+      }
+      else
+      {
+      bool alreadyExist = false;
+       alreadyExist = qry.next();
+
+       if(alreadyExist)
+       {
+
+           P2.setID(ui->le_ID_supp->text().toInt()) ;
+           bool test=P1.supprimer(P2.getID()) ;
+           QMessageBox msgBox;
+
+           if(!test)
+           {
+               msgBox.setText("Echec de suppression");
+               //ui->tab_afficher->setModel(P.afficher());
+           }
+           else
+               msgBox.setText("suppression avec succes.");
+               msgBox.exec();
+       }
+       else
+       {
+           QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                               QObject::tr("ID doesn't exist.\n"
+                               "Click Cancel to exit."), QMessageBox::Cancel);
+       }
+        }
 
 }
 
@@ -165,14 +197,121 @@ void MainWindow::on_Annuler_3_clicked()
     ui->le_ID_supp->setText("");
 }
 
+void MainWindow::on_afficher_pour_modifier_clicked()
+{
+    int val=ui->le_ID_mod->text().toInt();
+        QSqlQuery qry;
+        qry.prepare("SELECT * FROM Produit where ID_produit=:newid");
+        qry.bindValue(":newid",val);
+
+        if(qry.exec())
+        {
+            bool alreadyExist = false;
+            alreadyExist = qry.next();
+            if(alreadyExist)
+            {
+                ui->tabWidget->setCurrentIndex(3);
+
+
+                    ui->le_ID_mod->setText(qry.value(0).toString());
+                    ui->le_Nom_mod->setText(qry.value(1).toString());
+                    ui->le_Type_mod->setText(qry.value(2).toString());
+                    ui->le_Nombre_mod->setText(qry.value(3).toString());
+                    ui->le_Delai_mod->setText(qry.value(4).toString());
+                    ui->le_Prix_mod->setText(qry.value(5).toString());
+
+            }
+            else
+            {
+                QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+                QObject::tr("ID doesn't exist.\n"
+                "Click Cancel to exit."), QMessageBox::Cancel);
+            }
+
+        }
+        else{
+            QMessageBox::critical(nullptr, QObject::tr("ERROR"),
+            QObject::tr("Error.\n"
+            "Click Cancel to exit."), QMessageBox::Cancel);
+            }
+}
+
+void MainWindow::on_Rechercher_clicked()
+{
+    Produit P;
+
+    QString crit=ui->comboBox_rechercher->currentText();
+    if(crit=="ID")
+    {
+        QString id=ui->le_Rchercher->text() ;
+        ui->tab_rechercher->setModel(P.rechercheID(id));
+    }
+    else if(crit=="Nom")
+    {
+        QString Nom=ui->le_Rchercher->text() ;
+        ui->tab_rechercher->setModel(P.rechercheNom(Nom));
+    }
+    else if(crit=="Quantité")
+    {
+        QString Quant=ui->le_Rchercher->text() ;
+        ui->tab_rechercher->setModel(P.rechercheQuantite(Quant));
+    }
+    else
+    {
+        QString Prix=ui->le_Rchercher->text() ;
+        ui->tab_rechercher->setModel(P.recherchePrix(Prix));
+    }
+
+    //QString cin=ui->lineEdit->text();
+    //ui->tabvoyageur->setModel(tmpvoy.chercher(cin));
+}
+
 void MainWindow::on_trier_clicked()
 {
     Produit P;
-    ui->tab_afficher->setModel(P.trierDelai());
+    QString crit=ui->comboBox_trier->currentText();
+    if(crit=="Delai")
+    {
+        ui->tab_trier->setModel(P.trierDelai());
+    }
+    else if(crit=="Quantité")
+    {
+        ui->tab_trier->setModel(P.trierQuant());
+    }
+    else
+    {
+        ui->tab_trier->setModel(P.trierNom());
+    }
 }
 
-void MainWindow::on_afficher_pour_modifier_clicked()
-{
-    // ui->le_Nom_mod->setText("");
-     //chouf supprimer
+
+void MainWindow::on_Quitter_clicked()
+{//QSound::play("C:/Users/21651/Documents/2A22/projet C++/QT/projet_produit/button-49.wav");
+    MainWindow::close();
 }
+
+void MainWindow::on_alerte_clicked()
+{
+    QSqlQuery qry;
+ if (qry.exec("select * from Produit WHERE Quantite <= 5 "))
+ {
+    int n=0;
+
+     while (qry.next())
+     {
+         qDebug () <<n;
+         n= qry.value(2).toInt();
+        if(n<5)
+           {  Produit P;
+                 P.alerte_fin_stock();
+           }
+     }
+ }
+}
+
+void MainWindow::on_mailing_clicked()
+{
+    QString link="https://mail.google.com/mail/u/0/#inbox?compose=new";
+    QDesktopServices::openUrl(link);
+}
+

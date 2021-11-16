@@ -1,4 +1,4 @@
-#ifndef PRODUIT_H
+ #ifndef PRODUIT_H
 #define PRODUIT_H
 #include <QString>
 #include <QSqlQueryModel>
@@ -29,8 +29,15 @@ public:
                 bool supprimer(int);
                 bool modifier(int);
                 void searchRegexp(QTableView *table, int x);
-                bool recherche(int id);
+                QSqlQueryModel *rechercheID(QString x);
+                QSqlQueryModel * rechercheNom(QString x);
+                QSqlQueryModel * rechercheQuantite(QString x);
+                QSqlQueryModel * recherchePrix(QString x);
                 QSqlQueryModel * trierDelai();
+                QSqlQueryModel * trierQuant();
+                QSqlQueryModel * trierNom();
+                void alerte_fin_stock();
+
 
 private slots:
 void on_recherche_textChanged(const QString &arg1);

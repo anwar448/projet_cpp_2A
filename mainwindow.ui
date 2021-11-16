@@ -6,9 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>968</width>
-    <height>628</height>
+    <width>1142</width>
+    <height>605</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>8</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Gestion des Clients</string>
@@ -465,20 +470,67 @@
       </disabled>
      </palette>
     </property>
+    <property name="styleSheet">
+     <string notr="true">#QWidget {
+background:#404040;
+}
+QTabWidget::pane { /* The tab widget frame */
+border-top: 5px solid #535353;
+}
+QTabWidget::tab-bar {
+left: 0px; /* move to the right by 5px */
+}
+/* Style the tab using the tab sub-control. Note that it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+background: #dcdcdc;
+border: 2px solid #535353;
+border-bottom-color: rgb(0, 0, 0); /* same as the pane color */
+border-top-left-radius: 7px;
+border-top-right-radius: 7px;
+min-width: 120px;
+padding: 8px;
+color: #6a1616;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #c3a1a1, stop: 0.4 #a57373, stop: 0.5 #874444, stop: 1.0 #6a1616);
+}
+QTabBar::tab:selected {
+border-color: rgb(0, 0, 0);
+border-bottom-color: #535353; /* same as pane color */
+color: #dcdcdc;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QTabBar::tab:!selected {
+margin-top: 2px; /* make non-selected tabs look smaller */
+}
+QLineEdit {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+</string>
+    </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
-      <string>Acceuil</string>
+      <string>Gestion produits</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>50</y>
-        <width>461</width>
-        <height>421</height>
+        <x>0</x>
+        <y>0</y>
+        <width>941</width>
+        <height>491</height>
        </rect>
       </property>
       <property name="palette">
@@ -925,132 +977,20 @@
       </property>
       <property name="font">
        <font>
+        <pointsize>15</pointsize>
         <weight>75</weight>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
       <property name="title">
-       <string>Gestion des produits</string>
+       <string/>
       </property>
-      <widget class="QPushButton" name="pushButton_5">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>40</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Chercher</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="trier">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>90</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Trier</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_7">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>140</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Statistique</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_8">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>330</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Imprimer fiche</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_9">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>280</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Envoyer-mail</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_10">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>230</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Alerte fin stock</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="image">
        <property name="geometry">
         <rect>
-         <x>60</x>
-         <y>210</y>
+         <x>370</x>
+         <y>180</y>
          <width>231</width>
          <height>151</height>
         </rect>
@@ -1069,11 +1009,486 @@ p, li { white-space: pre-wrap; }
         <string/>
        </property>
       </widget>
+      <widget class="QTabWidget" name="tabWidget_metiers">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>911</width>
+         <height>451</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tab_9">
+        <attribute name="title">
+         <string>Trier</string>
+        </attribute>
+        <widget class="QPushButton" name="trier">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>20</y>
+           <width>101</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
+         </property>
+         <property name="text">
+          <string>Trier</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_trier">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>0</y>
+           <width>141</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+  width: 100%;
+  padding: 10px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #757575;
+  color: #dcdcdc;
+  font-size: 20px;
+font-family:Arial, Helvetica, sans-serif;
+}</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Nom</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Quantité</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Delai</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QTableView" name="tab_trier">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>60</y>
+           <width>911</width>
+           <height>361</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_10">
+        <attribute name="title">
+         <string>Rechercher</string>
+        </attribute>
+        <widget class="QComboBox" name="comboBox_rechercher">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>0</y>
+           <width>141</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+  width: 100%;
+  padding: 10px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #757575;
+  color: #dcdcdc;
+  font-size: 20px;
+font-family:Arial, Helvetica, sans-serif;
+}</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>ID</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Nom</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Quantité</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Prix</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QPushButton" name="Rechercher">
+         <property name="geometry">
+          <rect>
+           <x>412</x>
+           <y>17</y>
+           <width>101</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
+         </property>
+         <property name="text">
+          <string>Rechercher</string>
+         </property>
+        </widget>
+        <widget class="QTableView" name="tab_rechercher">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>61</y>
+           <width>911</width>
+           <height>361</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="geometry">
+          <rect>
+           <x>-220</x>
+           <y>-80</y>
+           <width>113</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="le_Rchercher">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>30</y>
+           <width>151</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QlineEdit{
+color rgb(140, 146, 255);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab">
+        <attribute name="title">
+         <string>Statistique</string>
+        </attribute>
+        <widget class="QWidget" name="widget_b" native="true">
+         <property name="geometry">
+          <rect>
+           <x>700</x>
+           <y>254</y>
+           <width>31</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+background-color: rgb(0, 0, 255);</string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="widget_r" native="true">
+         <property name="geometry">
+          <rect>
+           <x>699</x>
+           <y>353</y>
+           <width>31</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 0, 0);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_g">
+         <property name="geometry">
+          <rect>
+           <x>750</x>
+           <y>300</y>
+           <width>161</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>8514oem</family>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>true</underline>
+          </font>
+         </property>
+         <property name="text">
+          <string>Entre 30 et 60</string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="widget_g" native="true">
+         <property name="geometry">
+          <rect>
+           <x>700</x>
+           <y>304</y>
+           <width>31</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(0, 255, 0);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_r">
+         <property name="geometry">
+          <rect>
+           <x>750</x>
+           <y>354</y>
+           <width>141</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>8514oem</family>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>true</underline>
+          </font>
+         </property>
+         <property name="text">
+          <string>Plus que 60</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_b">
+         <property name="geometry">
+          <rect>
+           <x>750</x>
+           <y>254</y>
+           <width>151</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>8514oem</family>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+           <underline>true</underline>
+          </font>
+         </property>
+         <property name="text">
+          <string>Entre 0 et 30</string>
+         </property>
+        </widget>
+        <widget class="piechartWidget" name="widget" native="true">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>9</y>
+           <width>511</width>
+           <height>371</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="Quitter_2">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>710</x>
+           <y>190</y>
+           <width>201</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+           <underline>true</underline>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
+         </property>
+         <property name="text">
+          <string>Quantité</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Alerte fin stock</string>
+        </attribute>
+        <widget class="QPushButton" name="alerte">
+         <property name="geometry">
+          <rect>
+           <x>700</x>
+           <y>140</y>
+           <width>181</width>
+           <height>131</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
+         </property>
+         <property name="text">
+          <string>Alerte fin stock</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_8">
+        <attribute name="title">
+         <string>Mailing</string>
+        </attribute>
+        <widget class="QPushButton" name="mailing">
+         <property name="geometry">
+          <rect>
+           <x>700</x>
+           <y>140</y>
+           <width>181</width>
+           <height>131</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
+         </property>
+         <property name="text">
+          <string>Envoyer e-mail</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
-      <string>Ajouter un produit</string>
+      <string>Ajouter</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
@@ -1086,6 +1501,7 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="font">
        <font>
+        <pointsize>8</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -1171,11 +1587,33 @@ p, li { white-space: pre-wrap; }
       <widget class="QPushButton" name="ajouter">
        <property name="geometry">
         <rect>
-         <x>190</x>
-         <y>290</y>
-         <width>93</width>
-         <height>28</height>
+         <x>192</x>
+         <y>287</y>
+         <width>91</width>
+         <height>31</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
        </property>
        <property name="text">
         <string>Ajouter</string>
@@ -1185,10 +1623,32 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>290</y>
-         <width>93</width>
-         <height>28</height>
+         <y>287</y>
+         <width>91</width>
+         <height>31</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
        </property>
        <property name="text">
         <string>Annuler</string>
@@ -1226,9 +1686,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_26">
        <property name="geometry">
         <rect>
-         <x>129</x>
+         <x>90</x>
          <y>50</y>
-         <width>31</width>
+         <width>71</width>
          <height>16</height>
         </rect>
        </property>
@@ -1245,9 +1705,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_31">
        <property name="geometry">
         <rect>
-         <x>122</x>
+         <x>83</x>
          <y>250</y>
-         <width>31</width>
+         <width>71</width>
          <height>16</height>
         </rect>
        </property>
@@ -1264,9 +1724,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_30">
        <property name="geometry">
         <rect>
-         <x>51</x>
+         <x>12</x>
          <y>210</y>
-         <width>111</width>
+         <width>151</width>
          <height>16</height>
         </rect>
        </property>
@@ -1277,16 +1737,16 @@ p, li { white-space: pre-wrap; }
         </font>
        </property>
        <property name="text">
-        <string>Delai d'expiratio :</string>
+        <string>Delai d'expiration :</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_27">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>90</y>
-         <width>111</width>
-         <height>16</height>
+         <x>11</x>
+         <y>88</y>
+         <width>151</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -1302,9 +1762,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_29">
        <property name="geometry">
         <rect>
-         <x>94</x>
+         <x>55</x>
          <y>170</y>
-         <width>56</width>
+         <width>81</width>
          <height>16</height>
         </rect>
        </property>
@@ -1321,10 +1781,10 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_28">
        <property name="geometry">
         <rect>
-         <x>116</x>
-         <y>130</y>
-         <width>40</width>
-         <height>16</height>
+         <x>77</x>
+         <y>128</y>
+         <width>91</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -1364,7 +1824,7 @@ p, li { white-space: pre-wrap; }
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
-      <string>Afficher un produit</string>
+      <string>Afficher</string>
      </attribute>
      <widget class="QTableView" name="tab_afficher">
       <property name="geometry">
@@ -1380,31 +1840,54 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>16</x>
-        <y>10</y>
-        <width>93</width>
-        <height>28</height>
+        <y>7</y>
+        <width>101</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>-1</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
+      </property>
       <property name="text">
-       <string>afficher</string>
+       <string>Afficher</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_6">
      <attribute name="title">
-      <string>Modifier un produit</string>
+      <string>Modifier</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox_6">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>320</x>
         <y>80</y>
-        <width>411</width>
+        <width>441</width>
         <height>371</height>
        </rect>
       </property>
       <property name="font">
        <font>
+        <pointsize>8</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -1446,7 +1929,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>160</x>
          <y>270</y>
-         <width>113</width>
+         <width>131</width>
          <height>22</height>
         </rect>
        </property>
@@ -1456,7 +1939,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>160</x>
          <y>150</y>
-         <width>113</width>
+         <width>131</width>
          <height>22</height>
         </rect>
        </property>
@@ -1469,7 +1952,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>160</x>
          <y>190</y>
-         <width>113</width>
+         <width>131</width>
          <height>22</height>
         </rect>
        </property>
@@ -1485,7 +1968,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>160</x>
          <y>230</y>
-         <width>113</width>
+         <width>131</width>
          <height>22</height>
         </rect>
        </property>
@@ -1501,7 +1984,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>160</x>
          <y>110</y>
-         <width>113</width>
+         <width>131</width>
          <height>22</height>
         </rect>
        </property>
@@ -1526,16 +2009,32 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>37</y>
-         <width>93</width>
-         <height>28</height>
+         <y>34</y>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
         <font>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
        </property>
        <property name="text">
         <string>Afficher</string>
@@ -1545,9 +2044,9 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>100</x>
-         <y>270</y>
-         <width>31</width>
-         <height>16</height>
+         <y>268</y>
+         <width>51</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -1564,9 +2063,9 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>94</x>
-         <y>150</y>
-         <width>40</width>
-         <height>16</height>
+         <y>148</y>
+         <width>61</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -1582,10 +2081,10 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_33">
        <property name="geometry">
         <rect>
-         <x>28</x>
-         <y>110</y>
-         <width>111</width>
-         <height>16</height>
+         <x>20</x>
+         <y>108</y>
+         <width>131</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -1601,10 +2100,10 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_35">
        <property name="geometry">
         <rect>
-         <x>72</x>
-         <y>190</y>
-         <width>56</width>
-         <height>16</height>
+         <x>65</x>
+         <y>187</y>
+         <width>81</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -1620,10 +2119,10 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_34">
        <property name="geometry">
         <rect>
-         <x>29</x>
-         <y>230</y>
-         <width>111</width>
-         <height>16</height>
+         <x>10</x>
+         <y>228</y>
+         <width>141</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -1633,24 +2132,40 @@ p, li { white-space: pre-wrap; }
         </font>
        </property>
        <property name="text">
-        <string>Delai d'expiratio :</string>
+        <string>Delai d'expiration :</string>
        </property>
       </widget>
      </widget>
      <widget class="QPushButton" name="modifier">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>370</y>
-        <width>93</width>
-        <height>28</height>
+        <x>532</x>
+        <y>397</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
+        <family>Arial</family>
+        <pointsize>-1</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
       </property>
       <property name="text">
        <string>Modifier</string>
@@ -1659,17 +2174,33 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="Annuler_2">
       <property name="geometry">
        <rect>
-        <x>570</x>
-        <y>370</y>
-        <width>93</width>
-        <height>28</height>
+        <x>630</x>
+        <y>397</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
+        <family>Arial</family>
+        <pointsize>-1</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
       </property>
       <property name="text">
        <string>Annuler</string>
@@ -1701,7 +2232,7 @@ p, li { white-space: pre-wrap; }
     </widget>
     <widget class="QWidget" name="tab_7">
      <attribute name="title">
-      <string>Supprimer un produit</string>
+      <string>Supprimer</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox_7">
       <property name="geometry">
@@ -1714,6 +2245,7 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="font">
        <font>
+        <pointsize>10</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -1754,16 +2286,32 @@ p, li { white-space: pre-wrap; }
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>100</y>
-         <width>93</width>
-         <height>28</height>
+         <y>97</y>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
         <font>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
        </property>
        <property name="text">
         <string>Annuler</string>
@@ -1772,17 +2320,33 @@ p, li { white-space: pre-wrap; }
       <widget class="QPushButton" name="supprimer">
        <property name="geometry">
         <rect>
-         <x>190</x>
-         <y>100</y>
-         <width>93</width>
-         <height>28</height>
+         <x>192</x>
+         <y>97</y>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
         <font>
+         <family>Arial</family>
+         <pointsize>-1</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
        </property>
        <property name="text">
         <string>Supprimer</string>
@@ -1814,13 +2378,48 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </widget>
+   <widget class="QPushButton" name="Quitter">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>460</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+color: #fff;
+background:#b22626;
+border-radius: 15px;
+font-size:15px;
+font-family:Arial, Helvetica, sans-serif;
+}
+QPushButton:hover {
+color:#fff;
+border:15px;
+background:#6a1616;
+}</string>
+    </property>
+    <property name="text">
+     <string>Quitter</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>968</width>
+     <width>1142</width>
      <height>26</height>
     </rect>
    </property>
@@ -1836,6 +2435,14 @@ p, li { white-space: pre-wrap; }
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>piechartWidget</class>
+   <extends>QWidget</extends>
+   <header>piechartwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

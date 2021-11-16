@@ -6,6 +6,9 @@
 #include <QObject>
 #include <connection.h>
 #include <QMessageBox>
+#include <QSystemTrayIcon>
+#include <QSound>
+
 
 Produit::Produit()
 {
@@ -79,9 +82,9 @@ Produit::Produit(int id,QString nom,QString type,int quantite,QString delai,QStr
         Connection c;
         c.createconnect();
     QSqlQuery query;
-     query.prepare("Delete FROM produit where ID_Produit= :ID ");
-
+     query.prepare("Delete FROM Produit where ID_Produit= :ID ");
      query.bindValue(":ID",ID);
+
     return query.exec();
     }
 
@@ -149,20 +152,81 @@ Produit::Produit(int id,QString nom,QString type,int quantite,QString delai,QStr
        table->show();
     }
 
-    bool Produit:: recherche(int id)
+    QSqlQueryModel * Produit:: rechercheID(QString x)
+    {
+
+        QSqlQuery query;
+        query.prepare("select * from Produit where ID_produit=:ID");
+        query.bindValue(":ID",x);
+        query.exec();
+
+     QSqlQueryModel * model= new QSqlQueryModel();
+     model->setQuery(query);
+
+    return model;
+
+    }
+    QSqlQueryModel * Produit:: rechercheNom(QString x)
     {
         QSqlQuery query;
-        query.prepare("select * from Produit where ID_produit=:id");
-        query.bindValue(":id",id);
-        return query.exec() ;
+        query.prepare("select * from Produit where Nom=:Nom");
+        query.bindValue(":Nom",x);
+        query.exec();
+
+     QSqlQueryModel * model= new QSqlQueryModel();
+     model->setQuery(query);
+
+    return model;
     }
+
+    QSqlQueryModel * Produit:: rechercheQuantite(QString x)
+    {
+        QSqlQuery query;
+        query.prepare("select * from Produit where Quantite=:quant");
+        query.bindValue(":quant",x);
+        query.exec();
+
+     QSqlQueryModel * model= new QSqlQueryModel();
+     model->setQuery(query);
+
+    return model;
+    }
+
+
+    QSqlQueryModel * Produit:: recherchePrix(QString x)
+    {
+        QSqlQuery query;
+        query.prepare("select * from Produit where Prix=:Prix");
+        query.bindValue(":Prix",x);
+        query.exec();
+
+     QSqlQueryModel * model= new QSqlQueryModel();
+     model->setQuery(query);
+
+    return model;
+    }
+
 
     QSqlQueryModel * Produit :: trierDelai()
     {
         QSqlQueryModel * model= new QSqlQueryModel();
 
-        model->setQuery("select * from Produit ORDER BY Delai");
-        model->setHeaderData(0, Qt::Horizontal, QObject::tr("Delai"));
+        model->setQuery("select * from Produit ORDER BY Delai DESC");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("Type"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("Quantite"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("Delai"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("Prix"));
+        return model;
+    }
+
+    QSqlQueryModel * Produit :: trierQuant()
+    {
+        QSqlQueryModel * model= new QSqlQueryModel();
+
+        model->setQuery("select * from Produit ORDER BY Quantite");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
         model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
         model->setHeaderData(2, Qt::Horizontal, QObject::tr("Type"));
         model->setHeaderData(3, Qt::Horizontal, QObject::tr("Quantite"));
@@ -171,3 +235,29 @@ Produit::Produit(int id,QString nom,QString type,int quantite,QString delai,QStr
         return model;
 
     }
+
+    QSqlQueryModel * Produit :: trierNom()
+    {
+        QSqlQueryModel * model= new QSqlQueryModel();
+
+        model->setQuery("select * from Produit ORDER BY Nom");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("Type"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("Quantite"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("Delai"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("Prix"));
+        return model;
+    }
+
+    void Produit :: alerte_fin_stock()
+    {
+
+        QSystemTrayIcon *alerteIcon = new QSystemTrayIcon;
+
+        alerteIcon->setIcon(QIcon(":/new/prefix1/download.png"));
+        alerteIcon->show();
+        alerteIcon->showMessage("Gestion des produits ","produit presque fini ",QSystemTrayIcon::Information,15000);
+
+    }
+

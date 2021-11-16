@@ -5,8 +5,11 @@
 #-------------------------------------------------
 
 QT       += core gui sql
+QT       += widgets
+QT       += multimedia
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = Atelier_Connexion
 TEMPLATE = app
@@ -28,15 +31,21 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
-    produit.cpp
+    piechartwidget.cpp \
+    produit.cpp \
+    stat_produit.cpp
 
 HEADERS += \
         mainwindow.h \
     connection.h \
-    produit.h
+    piechartwidget.h \
+    produit.h \
+    qcustomplot.h \
+    stat_produit.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        stat_produit.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
