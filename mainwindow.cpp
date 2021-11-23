@@ -7,6 +7,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QPixmap pix("C:/Users/BERTRAND/Desktop/projet2A/Maquette_du_projet2A/ab.png");
+    ui->image->setPixmap(pix);
+    ui->image1->setPixmap(pix);
+    ui->image2->setPixmap(pix);
+    ui->image3->setPixmap(pix);
+
     connectDB();
 
 }
@@ -83,16 +89,15 @@ void MainWindow::on_pbAJOUTER_clicked()
  serv= collecte_data();
  bool test= controle_saisie();
  QMessageBox msgBox;
-  if(test)
+  if(test){
+    serv.ajouter();
       msgBox.setText("Ajout avec succes.");
+  }
   else msgBox.setText("Echec de l'ajout");
   msgBox.exec();
 }
 
-void MainWindow::on_groupBox_3_clicked()
-{
 
-}
 
 void MainWindow::on_pushButton_2_clicked()
 {
@@ -108,11 +113,6 @@ void MainWindow::on_pushButton_2_clicked()
    this->ui->spinBox_7->setValue(s.getID_employer());
 }
 
-void MainWindow::on_pushButton_6_clicked()
-{
-
-}
-
 void MainWindow::on_pb_supprimer_clicked()
 {
    service S1; S1.setId(ui->id_supp->text().toInt());
@@ -123,5 +123,41 @@ void MainWindow::on_pb_supprimer_clicked()
     else msgBox.setText("Echec de suppression");
     msgBox.exec();
 
+
+}
+
+void MainWindow::on_pb_modifier_clicked()
+{
+  service S;
+  S.setId(this->ui->spinBox_3->value());
+  S.setType(this->ui->lineEdit_11->text());
+  S.setTarifs(this->ui->spinBox_6->value());
+  S.setDisponibilite(this->ui->lineEdit_13->text());
+  S.setOffres(this->ui->lineEdit_12->text());
+  S.setHoraire(this->ui->DATE->date());
+  S.setID_employer(this->ui->spinBox_7->value());
+
+  bool test= controle_saisie();
+  QMessageBox msgBox;
+   if(true){
+     S.modifier(S);
+       msgBox.setText("Modifier avec succes.");
+   }
+   else msgBox.setText("Echec de la modification");
+   msgBox.exec();
+
+}
+
+
+
+void MainWindow::on_PbRecherche_clicked()
+{
+    this->detail.show();
+    this->hide();
+    this->detail.pa=this;
+    service s;
+    QVector<service> t = s.ListService();
+    this->detail.buildtable(t);
+    this->detail.response=t;
 
 }

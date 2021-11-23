@@ -24,6 +24,7 @@ public:
     QString getOffre();
     QString getDisponibilite();
     QDate getHoraire();
+
     int getID_employer();
     void setId(int id);
     void setTarifs(int tarifs);
@@ -47,8 +48,13 @@ public:
      bool supprimer(int);
      bool afficher();
      service select(int id);
-
-
+     QVector<service> ListService(QString request="");
+     QVector<service> ListServiceParams(QString request);
+     QVector<service> MakeSearch(QString key);
+     static bool alphaDescCompareNom(service &a, service &b);
+     static bool alphaAscCompareNom(service &a, service &b);
+     static bool alphaDesCompareTarifs(service &a, service &b);
+     static bool alphaAscCompareTarifs(service &a, service &b);
 };
 
 

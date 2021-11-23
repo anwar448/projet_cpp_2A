@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include "service.h"
+#include "detail.h"
 #include "QMessageBox"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,19 +15,24 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    Detail detail;
+
     bool controle_saisie();
     service collecte_data();
 
 private slots:
     void on_pbAJOUTER_clicked();
 
-    void on_groupBox_3_clicked();
-
     void on_pushButton_2_clicked();
 
-    void on_pushButton_6_clicked();
-
     void on_pb_supprimer_clicked();
+
+    void on_pb_modifier_clicked();
+
+
+
+    void on_PbRecherche_clicked();
 
 private:
     Ui::MainWindow *ui;

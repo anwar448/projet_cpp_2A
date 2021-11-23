@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1023</width>
+    <height>734</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>761</width>
-      <height>511</height>
+      <width>1001</width>
+      <height>661</height>
      </rect>
     </property>
     <property name="title">
@@ -30,10 +30,16 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>80</y>
-       <width>291</width>
-       <height>281</height>
+       <y>20</y>
+       <width>481</width>
+       <height>241</height>
       </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>281</height>
+      </size>
      </property>
      <property name="title">
       <string>Rechercher services</string>
@@ -41,9 +47,9 @@
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>10</x>
         <y>70</y>
-        <width>161</width>
+        <width>251</width>
         <height>41</height>
        </rect>
       </property>
@@ -51,8 +57,8 @@
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>190</y>
+        <x>350</x>
+        <y>80</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -61,81 +67,215 @@
        <string>Rechercher</string>
       </property>
      </widget>
-    </widget>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="geometry">
-      <rect>
-       <x>345</x>
-       <y>20</y>
-       <width>401</width>
-       <height>481</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>380</y>
-       <width>311</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Veuillez faire un choix</string>
-     </property>
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QComboBox" name="comboBox">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>30</y>
+        <y>110</y>
+        <width>251</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>190</y>
         <width>97</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string/>
+       <string>Nom </string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_4">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>190</y>
+        <width>97</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Type </string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>270</y>
+       <width>481</width>
+       <height>381</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Critère de trie</string>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>160</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Date superieur a:</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>211</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ordre alphabetique croissant</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="radioButton_2">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>70</y>
-        <width>97</width>
+        <y>60</y>
+        <width>221</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>RadioButton</string>
+       <string>Ordre alphabetique decroissant</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>250</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Date inferieur a:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>210</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Date egale a:</string>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="dateSup">
       <property name="geometry">
        <rect>
         <x>170</x>
+        <y>160</y>
+        <width>110</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="dateEgale">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>210</y>
+        <width>110</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="dateInf">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>250</y>
+        <width>110</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_5">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
         <y>30</y>
-        <width>97</width>
+        <width>131</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>RadioButton</string>
+       <string>Prix croissant</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_4">
+     <widget class="QRadioButton" name="radioButton_6">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>70</y>
-        <width>97</width>
+        <x>300</x>
+        <y>60</y>
+        <width>131</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>RadioButton</string>
+       <string>Prix decroissant</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>10</y>
+       <width>471</width>
+       <height>641</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QTableWidget" name="tableWidget"/>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Imprimer</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>
@@ -144,7 +284,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1023</width>
      <height>26</height>
     </rect>
    </property>

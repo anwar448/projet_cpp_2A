@@ -151,10 +151,97 @@ service service::select(int id)
     return s;
 }
 
+QVector<service> service::ListService(QString request)
+{
+    QVector<service> tableau;
+    service service;
+    QSqlQuery querySearch;
+    if(request=="") request = "select* from SERVICES";
+    querySearch.prepare(request);
+    if(querySearch.exec()){
+        int i(0);
+        while (querySearch.next()) {
+i++;
+            service.setId(querySearch.value(0).toInt());
+            service.setOffres(querySearch.value(1).toString());
+            service.setType(querySearch.value(2).toString());
+            service.setTarifs(querySearch.value(3).toInt());
+            service.setDisponibilite(querySearch.value(4).toString());
+            service.setHoraire(querySearch.value(5).toDate());
+            service.setID_employer(querySearch.value(6).toInt());
+            tableau.push_back(service);
+
+        }
+        qDebug()<<"il y a "<<i<<"elements";
+        return tableau;
+    }else{
+        qDebug()<<"erreur de suppression:" << querySearch.lastError().text();
+
+    }
+}
+
+QVector<service> service::MakeSearch(QString key)
+{
+
+    QVector<service> tableau;
+    service service;
+    QString request = "";
+    QSqlQuery querySearchKey;
+    if(request=="") request = "select* from SERVICES where type LIKE '%"+key+"%';";
+    querySearchKey.prepare(request);
+    if(querySearchKey.exec()){
+        int i(0);
+        while (querySearchKey.next()) {
+i++;
+            service.setId(querySearchKey.value(0).toInt());
+            service.setOffres(querySearchKey.value(1).toString());
+            service.setType(querySearchKey.value(2).toString());
+            service.setTarifs(querySearchKey.value(3).toInt());
+            service.setDisponibilite(querySearchKey.value(4).toString());
+            service.setHoraire(querySearchKey.value(5).toDate());
+            service.setID_employer(querySearchKey.value(6).toInt());
+            tableau.push_back(service);
+
+        }
+        qDebug()<<"il y a "<<i<<"elements";
+        return tableau;
+    }else{
+        qDebug()<<"erreur de suppression:" << querySearchKey.lastError().text();
+        return tableau;
+    }
+}
+
+bool service::alphaDescCompareNom(service &a, service &b)
+{
+    int x=QString::compare(a.getType(), b.getType(), Qt::CaseSensitive);
+    if(x<0) return true;
+    return false;
+}
+
+bool service::alphaAscCompareNom(service &a, service &b)
+{
+    int x=QString::compare(a.getType(), b.getType());
+    //int x=QString::compare("az", "aidriss");
+    if(x>0) return true;
+    return false;
+}
+
+bool service::alphaDesCompareTarifs(service &a, service &b)
+{
+    if(a.getTarifs()>b.getTarifs()) return true;
+    return false ;
+}
+
+bool service::alphaAscCompareTarifs(service &a, service &b)
+{
+    if(a.getTarifs()<=b.getTarifs()) return true;
+    return false;
+}
+
 bool service::modifier(service a)
 {
-    QSqlQuery query;
-    QString   request = "update SERVICE set tarifs= :tarifs, type= :type, offre= :offre, disponibilite= :disponibilite, ID_employer= :ID_employer, horaire= :horaire where id= :id;";
+    QSqlQuery queryUpdate;
+    QString   request = "update SERVICES set tarifs= :tarifs, type= :type, offres= :offre, disponibilite= :disponibilite, ID_emp= :ID_employer, horaire= :horaire where id= :id;";
 
     this->setTarifs(a.getTarifs());
     this->setType(a.getType());
@@ -163,19 +250,21 @@ bool service::modifier(service a)
     this->setHoraire(a.getHoraire());
     this->setID_employer(a.getID_employer());
 
-    query.prepare(request);
-    query.bindValue(":id", this->id);
-    query.bindValue(":tarifs", this->tarifs);
-    query.bindValue(":type", this->type);
-    query.bindValue(":offre", this->offre);
-    query.bindValue(":disponibilite", this->disponibilite);
-    query.bindValue(":horaire", this->horaire);
-    query.bindValue(":ID_employer", this->ID_employer);
+    qDebug()<<a.getId()<<"; "<<a.getType()<<"; "<<a.getOffre()<<" ;"<<a.getTarifs();
 
-    if(query.exec())return true;
+    queryUpdate.prepare(request);
+    queryUpdate.bindValue(":id", this->id);
+    queryUpdate.bindValue(":tarifs", this->getTarifs());
+    queryUpdate.bindValue(":type", this->type);
+    queryUpdate.bindValue(":offre", this->offre);
+    queryUpdate.bindValue(":disponibilite", this->disponibilite);
+    queryUpdate.bindValue(":horaire", this->horaire);
+    queryUpdate.bindValue(":ID_employer", this->ID_employer);
+
+    if(queryUpdate.exec())return true;
     else{
 
-        qDebug()<<"erreur du a:" << query.lastError().text();
+        qDebug()<<"erreur du a:" << queryUpdate.lastError().text();
         return false;
     }
 
