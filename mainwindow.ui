@@ -1019,7 +1019,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
        <property name="currentIndex">
-        <number>4</number>
+        <number>5</number>
        </property>
        <widget class="QWidget" name="tab_9">
         <attribute name="title">
@@ -1480,6 +1480,63 @@ background:#6a1616;
          </property>
          <property name="text">
           <string>Envoyer e-mail</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_11">
+        <attribute name="title">
+         <string>Arduino</string>
+        </attribute>
+        <widget class="QLabel" name="label_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>120</y>
+           <width>181</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Etat de Stock</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>120</y>
+           <width>151</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton">
+         <property name="geometry">
+          <rect>
+           <x>2</x>
+           <y>170</y>
+           <width>161</width>
+           <height>121</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Accepter</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>170</y>
+           <width>161</width>
+           <height>121</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Refuser</string>
          </property>
         </widget>
        </widget>

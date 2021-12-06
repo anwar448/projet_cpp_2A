@@ -7,6 +7,7 @@
 #include <QTableView>
 #include <QTreeView>
 #include <QItemDelegate>
+#include "arduino.h"
 
 namespace Ui {
 class MainWindow;
@@ -47,9 +48,21 @@ private slots:
 
     void on_mailing_clicked();
 
+    void update_label();   // slot permettant la mise à jour du label état de la lampe 1,
+    // ce slot est lancé à chaque réception d'un message de Arduino
+
+    void on_pushButton_clicked();   // bouton ON
+
+    void on_pushButton_2_clicked(); // bouton OFF
+
+
+
 private:
     Ui::MainWindow *ui;
     Produit P;
+    QByteArray data; // variable contenant les données reçues
+
+    Arduino A; // objet temporaire
 };
 
 #endif // MAINWINDOW_H
