@@ -21,7 +21,7 @@ public:
     int Stat_1();
     int Stat_2();
     int Stat_3();
-    void Stat(QPaintEvent *);
+
 
 private:
     Ui::stat_Produit *ui;

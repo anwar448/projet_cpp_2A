@@ -7,7 +7,7 @@
 #include <connection.h>
 #include <QMessageBox>
 #include <QSystemTrayIcon>
-#include <QSound>
+#include <QSoundEffect>
 
 
 Produit::Produit()
@@ -258,6 +258,17 @@ Produit::Produit(int id,QString nom,QString type,int quantite,QString delai,QStr
         alerteIcon->setIcon(QIcon(":/new/prefix1/download.png"));
         alerteIcon->show();
         alerteIcon->showMessage("Gestion des produits ","produit presque fini ",QSystemTrayIcon::Information,15000);
+
+        if(alerteIcon)
+                     {
+                        QSoundEffect * sound_effect = new QSoundEffect;
+                            sound_effect->setSource(QUrl("qrc:/new/prefix1/sound.wav"));
+                          // sound_effect->setLoopCount(QSoundEffect::Infinite);
+                            sound_effect->setVolume(0.9);
+                            sound_effect->play();
+                        //  QEventLoop loop;
+                        //  loop.exec();
+                      }
 
     }
 

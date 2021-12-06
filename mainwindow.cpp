@@ -18,6 +18,8 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include "piechartwidget.h"
+#include <QSoundEffect>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -304,6 +306,7 @@ void MainWindow::on_alerte_clicked()
         if(n<5)
            {  Produit P;
                  P.alerte_fin_stock();
+
            }
      }
  }
