@@ -16,6 +16,8 @@ Detail::Detail(QWidget *parent) :
     ui->setupUi(this);
     QPixmap pix("C:/Users/BERTRAND/Desktop/projet2A/Maquette_du_projet2A/abc.png");
     ui->image4->setPixmap(pix);
+    QPixmap pixs("C:/Users/BERTRAND/Desktop/projet2A/Maquette_du_projet2A/f.png");
+    ui->image5->setPixmap(pixs);
 
     this->ui->lineEdit->setFocus();
     this->search.setParent(this);
@@ -23,7 +25,17 @@ Detail::Detail(QWidget *parent) :
     GSuggestCompletion *g = new GSuggestCompletion;
     g->d=this;
     this->search.det= g;
+    int return_arduino = this->arduino.connect_arduino();
+    switch (return_arduino) {
+    case(0):qDebug()<< "arduino est active et est connecte a :" <<this->arduino.getarduino_port_name();
+        break;
+    case(1):qDebug() << "arduino est active mais pas connecte a :" <<this->arduino.getarduino_port_name();
+        break;
+    case(-1):qDebug() << "arduino n'est pas active";
+    }
 
+    connect(this->arduino.getserial(),SIGNAL(readyRead()), this, SLOT(check_available()));
+    qDebug()<<this->arduino.getserial();
 
 }
 
@@ -161,3 +173,43 @@ void Detail::on_comboBox_2_currentIndexChanged(int index)
 
     qDebug()<<"idriss tu es fatiguer "<<this->ui->comboBox_2->currentIndex()<<" : "<<index;
 }
+
+void Detail::check_available()
+{
+    this->data_recive_form_arduino = arduino.read_from_arduino();
+    QVector<service>::Iterator jt;
+    QVector<service>::Iterator it;
+    bool resultat =false;
+    bool trouve = false;
+    QByteArray res;
+
+    int total =0;
+    qDebug()<<"la valeur lu est: "<<this->data_recive_form_arduino;
+    QString response = this->data_recive_form_arduino;
+    QString resp;
+    if(response == '1'){
+        resp= "lissage";
+    };
+
+    for (it =this->response.begin(); it != this->response.end() ; ++it) {
+       if(it->getOffre() == resp){
+           this->panier.push_back(*it);
+           for (jt=panier.begin(); jt != panier.end(); ++jt) {
+               total+=jt->getTarifs();
+           }
+           resultat = true;
+           trouve = true;
+           break;
+       }
+    }
+    if(resultat==true){
+        qDebug()<<"on retour la l'etat de la facture ";
+        this->arduino.write_to_arduino(res.setNum(total));
+
+    }else{
+        qDebug()<<"je dois ecris f";
+        this->arduino.write_to_arduino("f");
+
+    }
+}
+

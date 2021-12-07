@@ -1,5 +1,8 @@
 QT       += core gui
 QT       +=sql
+QT       +=printsupport
+QT       += serialport
+QT       +=network
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -19,16 +22,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     conbd.cpp \
+    detail.cpp \
+    form.cpp \
     main.cpp \
     mainwindow.cpp \
+    googlesuggest.cpp \
+    arduino.cpp \
+    searchbox.cpp \
     service.cpp
 
 HEADERS += \
     conbd.h \
+    detail.h \
+    form.h \
     mainwindow.h \
+    arduino.h \
+    googlesuggest.h \
+    searchbox.h \
     service.h
 
 FORMS += \
+    detail.ui \
+    form.ui \
     mainwindow.ui
 
 # Default rules for deployment.

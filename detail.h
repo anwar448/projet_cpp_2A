@@ -5,6 +5,7 @@
 #include<QTableWidget>
 #include "service.h"
 #include "searchbox.h"
+#include "arduino.h"
 namespace Ui {
 class Detail;
 }
@@ -22,7 +23,12 @@ public:
     SearchBox search;
     void buildtable(QVector<service> t);
     QString buildRequest();
+    QVector<service> panier;
+    QByteArray data_recive_form_arduino;
+    Arduino arduino;
 
+public slots:
+    void check_available();
 private slots:
     void on_PbReturn_clicked();
 
