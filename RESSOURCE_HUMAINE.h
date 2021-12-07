@@ -43,7 +43,7 @@ public:
     QSqlQueryModel *trie55();
 
     QChartView * stat();
-
+void   statistique(QVector<double>* ticks,QVector<QString> *labels);
 
 
 

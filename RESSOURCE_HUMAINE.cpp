@@ -237,105 +237,17 @@ QSqlQueryModel *RESSOURCE_HUMAINE::trie55()
     return  model;
 }
 
-QChartView * RESSOURCE_HUMAINE::stat()
+
+void  RESSOURCE_HUMAINE::statistique(QVector<double>* ticks,QVector<QString> *labels)
 {
-
-
-        // Assign names to the set of bars used
-        QBarSet *set0 = new QBarSet("NOMBRE HEURE DE TRAVAIL");
-
-        QVector <QString> duree;
-
-        // Assign values for each bar
-
-        QSqlQuery query,query2;
-        query.prepare("select count(*) from RESSOURCE_HUMAINE group by cin");
-        query.exec();
-
-        query2.prepare("select nom from RESSOURCE_HUMAINE group by cin");
-        query2.exec();
-
-
-        QStringList categories;
-        while(query.next())
-          {
-            *set0 << query.value(0).toInt();
-
-          }
-        while(query2.next())
-          {
-            categories << query2.value(0).toString();
-          }
-
-
-       // *set0 << 283 << 341 << 313 << 338 << 346 << 335;
-
-
-
-
-        // Add all sets of data to the chart as a whole
-        // 1. Bar Chart
-        QBarSeries *series = new QBarSeries();
-
-        // 2. Stacked bar chart
-        // QHorizontalStackedBarSeries *series = new QHorizontalStackedBarSeries();
-        series->append(set0);
-
-
-        // Used to define the bar chart to display, title
-        // legend,
-        QChart *chart = new QChart();
-
-        // Add the chart
-        chart->addSeries(series);
-
-        // Set title
-        chart->setTitle("Seance avg by duree");
-
-        // Define starting animation
-        // NoAnimation, GridAxisAnimations, SeriesAnimations
-        chart->setAnimationOptions(QChart::AllAnimations);
-
-        // Holds the category titles
-
-
-        // Adds categories to the axes
-        QBarCategoryAxis *axis = new QBarCategoryAxis();
-        axis->append(categories);
-        chart->createDefaultAxes();
-
-        // 1. Bar chart
-        chart->setAxisX(axis, series);
-
-        // 2. Stacked Bar chart
-        // chart->setAxisY(axis, series);
-
-        // Define where the legend is displayed
-        chart->legend()->setVisible(true);
-        chart->legend()->setAlignment(Qt::AlignBottom);
-
-        // Used to display the chart
-        QChartView *chartView = new QChartView(chart);
-        chartView->setRenderHint(QPainter::Antialiasing);
-
-
-
-       return chartView;
-
-
+QSqlQuery q;
+    int i=0;
+    q.exec("select cin  from RESSOURCE_HUMAINE");
+    while (q.next())
+    {
+        QString cin = q.value(0).toString();
+        i++;
+        *ticks<<i;
+        *labels <<cin;
+    }
 }
-QSqlQueryModel * RESSOURCE_HUMAINE::fiche_de_paie()
-{
-
-
-    QSqlQueryModel* model=new QSqlQueryModel();
-    model->setQuery("select * from RESSOURCE_HUMAINE ");
-        prix=NOMBRE_HEURE_DE_TRAVAIL*1.1;
-        model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
-        model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
-        model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
-        model->setHeaderData(5, Qt::Horizontal, QObject::tr("prix"));
-        return model;
-
-}
-

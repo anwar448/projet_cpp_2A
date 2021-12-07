@@ -1,4 +1,11 @@
 QT       += core gui sql charts printsupport
+QT       += core gui sql
+QT       += widgets
+QT       += multimedia
+QT       += core gui  serialport charts
+QT += core gui network
+QT += core gui charts
+QT += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,16 +24,44 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     RESSOURCE_HUMAINE.cpp \
+    clients.cpp \
     connection.cpp \
+    detail.cpp \
+    facture.cpp \
+    fournisseur.cpp \
+    googlesuggest.cpp \
+    login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    piechartwidget.cpp \
+    produit.cpp \
+    qcustomplot.cpp \
+    searchbox.cpp \
+    service.cpp \
+    smtp.cpp \
+    stat_produit.cpp
 
 HEADERS += \
     RESSOURCE_HUMAINE.h \
+    clients.h \
     connection.h \
-    mainwindow.h
+    detail.h \
+    facture.h \
+    fournisseur.h \
+    googlesuggest.h \
+    login.h \
+    mainwindow.h \
+    piechartwidget.h \
+    produit.h \
+    qcustomplot.h \
+    searchbox.h \
+    service.h \
+    smtp.h \
+    stat_produit.h
 
 FORMS += \
+    detail.ui \
+    login.ui \
     mainwindow.ui
 
 # Default rules for deployment.
