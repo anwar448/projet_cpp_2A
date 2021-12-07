@@ -51,7 +51,7 @@ void Clients::setnbr_visite(int nbr_visite){this->nbr_visite=nbr_visite;}
 bool Clients::ajouter_clients()
 {
     Connection c;
-    c.createconnect();
+    c.ouvrirConnexion();
 
     QString cin_string= QString::number(ID_C);
 
@@ -76,7 +76,7 @@ bool Clients::ajouter_clients()
 QSqlQueryModel* Clients::afficher()
 {
     Connection c;
-    c.createconnect();
+    c.ouvrirConnexion();
     QSqlQueryModel* model=new QSqlQueryModel();
 
           model->setQuery("SELECT* FROM clients");
@@ -100,7 +100,7 @@ QSqlQueryModel* Clients::afficher()
 bool Clients::supprimer(int ID_C)
 {
     Connection c;
-    c.createconnect();
+    c.ouvrirConnexion();
 
     QSqlQuery query;
 
@@ -114,7 +114,7 @@ bool Clients::supprimer(int ID_C)
 bool Clients::modifier(int ID_C)
 {
     Connection c;
-    c.createconnect();
+    c.ouvrirConnexion();
     QSqlQuery query;
      query.prepare("Update clients set nom= :nom, prenom= :prenom , genre= :genre , adresse_maison= :adresse_maison , num_tel= :num_tel , email= :email , date_visite= :date_visite , nbr_visite= :nbr_visite   where ID_C= :ID_C ");
 

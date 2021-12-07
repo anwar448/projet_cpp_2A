@@ -1,7 +1,6 @@
 #ifndef CLIENTS_H
 #define CLIENTS_H
 
-
 #include <QString>
 #include <QSqlQueryModel>
 class Clients
@@ -50,4 +49,5 @@ public:
     QString nom, prenom, genre ,adresse_maison ,email ,date_visite;
 
 };
+
 #endif // CLIENTS_H

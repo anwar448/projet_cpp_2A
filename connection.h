@@ -3,12 +3,14 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include "clients.h"
 
 class Connection
 {
 public:
     Connection();
-    bool createconnect();
+    bool ouvrirConnexion();
+    Clients c;
 };
 
 #endif // CONNECTION_H
