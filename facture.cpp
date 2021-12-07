@@ -1,4 +1,4 @@
-#include "facture.h"
+//#include "facture.h"
 #include <QDebug>
 #include "connection.h"
 
