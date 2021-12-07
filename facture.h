@@ -1,4 +1,4 @@
-#ifndef FACTURE_H
+//#ifndef FACTURE_H
 #define FACTURE_H
 
 #include <QString>

@@ -1,3 +1,4 @@
+/**/
 /*#ifndef ARDUINO_H
 #define ARDUINO_H
 #include <QtSerialPort/QSerialPort> //rassemblent des fcts permettant l'écha,ge des données dans une lieison série
